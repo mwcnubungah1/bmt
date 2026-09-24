@@ -14,11 +14,13 @@ DECLARE
   v_loan_account UUID;
 BEGIN
   SELECT id INTO v_user FROM auth.users WHERE email = 'nasabah11@nara.di';
-  IF v_user IS NULL THEN RAISE EXCEPTION 'Create nasabah11@nara.di before applying this fixture'; END IF;
+  -- This is optional demo data. Production deployments usually do not have
+  -- the local fixture user, so skip the fixture instead of failing db push.
+  IF v_user IS NULL THEN RETURN; END IF;
   SELECT id INTO v_branch FROM bmt_db.branches WHERE code = '001' LIMIT 1;
   SELECT id INTO v_savings_product FROM bmt_db.products WHERE code = 'SAV40' AND category = 'SAVINGS' LIMIT 1;
   SELECT id INTO v_loan_product FROM bmt_db.products WHERE code = 'LOAN409' AND category = 'LOAN' LIMIT 1;
-  IF v_branch IS NULL OR v_savings_product IS NULL OR v_loan_product IS NULL THEN RAISE EXCEPTION 'Required branch/products are missing'; END IF;
+  IF v_branch IS NULL OR v_savings_product IS NULL OR v_loan_product IS NULL THEN RETURN; END IF;
 
   SELECT id INTO v_customer FROM bmt_db.customers WHERE auth_user_id = v_user;
   IF v_customer IS NULL THEN
