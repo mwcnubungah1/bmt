@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+.role-panel { min-width: 0; border: 1px solid #e0eae4; border-radius: 18px; background: #fff; padding: 24px; box-shadow: 0 4px 20px #164c2e04; }
+.detail-modal { position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(17, 44, 27, 0.52); }
+.detail-modal-card { width: min(48rem, 100%); max-height: min(90dvh, 52rem); overflow-y: auto; border-radius: 1.25rem; background: #f7faf7; padding: 1rem; box-shadow: 0 24px 80px rgba(17, 44, 27, 0.28); }
+.role-action { display: flex; align-items: center; gap: 16px; min-height: 96px; padding: 20px; border: 1px solid #dcebe1; border-radius: 14px; background: #edf6ef; color: #154b34; transition: background 150ms, box-shadow 150ms; }
+.role-action:hover { background: #deeee3; box-shadow: 0 4px 16px #164c2e10; }
+.role-action-primary, .role-balance { background: #075b3b; color: white; border-color: #075b3b; }
+.role-action-primary:hover { background: #064a31; }
+button:focus-visible, a:focus-visible { outline: 3px solid #ad781a; outline-offset: 3px; }
+@media (max-width: 639px) { .role-panel { padding: 18px; } .role-action { min-height: 80px; padding: 16px; } }
+
+.confirmation { margin: auto; width: min(32rem, calc(100% - 2rem)); max-height: 90dvh; overflow: auto; padding: 24px; border-radius: 16px; color: #17211a; background: white; box-shadow: 0 20px 80px #17211a33; }
+.confirmation::backdrop { background: #17211a99; }
+[hidden] { display: none !important; }
+.workbench input, .workbench select, .workbench textarea { border: 1px solid #718078; border-radius: 8px; padding: 10px 12px; max-width: 100%; }
+.workbench label { display: grid; gap: 6px; font-size: 14px; }
+.workbench section { min-width: 0; }
+.mobile-navigation { position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; background: white; border-top: 1px solid #d5dfd8; padding-bottom: env(safe-area-inset-bottom); box-shadow: 0 -4px 20px #17211a0d; }
+.mobile-navigation button { min-height: 48px; }
+@media (max-width: 1023px) { main { padding-bottom: 150px; } }
+
+:root {
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  color: #183b2a;
+  background: #f4f7f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #f7faf7;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 88% 0%, rgba(214, 235, 207, 0.62), transparent 28rem),
+    #f4f7f1;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a,
+input[type='checkbox'] {
+  min-height: 44px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(202, 139, 64, 0.72);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: #fffdf7;
+  background: #1c7042;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+input, select, textarea { min-width: 0; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+.receipt-slip { max-width: 340px; margin: 0 auto; padding: 20px; background: #fff; color: #111; text-align: center; font-family: 'Courier New', monospace; }
+.receipt-slip p { margin: 6px 0; font-size: 12px; text-align: left; }
+.receipt-slip h2, .receipt-slip > p:nth-child(3) { text-align: center; }
+.receipt-logo { display: block; width: 58px; height: 58px; margin: 0 auto 8px; object-fit: contain; }
+.receipt-total { font-size: 22px !important; font-weight: 700; text-align: center !important; }
+.receipt-signatures { display: flex; justify-content: space-between; margin-top: 28px; font-size: 12px; }
+@media print {
+  body * { visibility: hidden !important; }
+  #teller-receipt, #teller-receipt * { visibility: visible !important; }
+  #teller-receipt { position: absolute; left: 0; top: 0; width: 80mm; max-width: 80mm; margin: 0; padding: 6mm; }
+  @page { size: 80mm auto; margin: 0; }
+}
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px; }
+}
