@@ -51,7 +51,7 @@ export async function fetchDashboardRows(
     const searchColumn = ({ customers: 'full_name', onboarding_applications: 'full_name', financial_accounts: 'account_number', loan_applications: 'application_number', transactions: 'transaction_number' } as Record<string, string>)[source.name]
     if (search.trim() && searchColumn) query = query.ilike(searchColumn, `%${search.trim().replace(/[%_]/g, '')}%`)
     if (status) query = query.filter('status', 'eq', status)
-    const result = await query.order('id', { ascending: true }).range(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE)
+    const result = await query.order('id', { ascending: true }).range(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE - 1)
 
     return {
       data: (result.data ?? []) as unknown as DashboardRow[],

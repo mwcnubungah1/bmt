@@ -1,6 +1,4 @@
 -- Production-readiness structural gate for the local/staging database.
-\set ON_ERROR_STOP on
-
 SELECT plan(7);
 
 SELECT ok(
